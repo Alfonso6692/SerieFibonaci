@@ -1,0 +1,32 @@
+package TDAVideoTuto11;
+
+public class TDAVideoTuto11 {
+
+    public static void main(String[] args) {
+        TDAVideoTuto11 objfibo = new TDAVideoTuto11();
+        
+        // Llamamos al método fibonacciRecursivo y mostramos el resultado
+        System.out.println("La sucesión Fibonacci de 12 mediante Recursividad es " + objfibo.fibonacciRecursivo(12) );
+    }
+
+    // Usando un arreglo para almacenar los resultados previos (memoización)
+    public int fibonacciRecursivo(int n) {
+        // Creamos un arreglo para almacenar los valores ya calculados
+        int[] memo = new int[n + 1];
+        return fibonacciMemo(n, memo);
+    }
+
+    // Método recursivo con memoización
+    private int fibonacciMemo(int n, int[] memo) {
+        if (n == 1 || n == 2) {
+            return 1;
+        }
+        if (memo[n] != 0) {
+            return memo[n];  // Si ya está calculado, lo devolvemos desde el arreglo
+        }
+        
+        // Si no está calculado, lo calculamos y lo almacenamos
+        memo[n] = fibonacciMemo(n - 1, memo) + fibonacciMemo(n - 2, memo);
+        return memo[n];
+    }
+}
